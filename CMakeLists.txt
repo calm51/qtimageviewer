@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.16)
+﻿cmake_minimum_required(VERSION 3.16)
 
 project(qtimageviewer LANGUAGES CXX)
 
@@ -29,11 +29,13 @@ add_library(qtimageviewer SHARED
   src/elements/clippedpixmapitem.h src/elements/clippedpixmapitem.cpp
   src/elements/clippedtextitem.h src/elements/clippedtextitem.cpp
   src/elements/clippedrectitem.h src/elements/clippedrectitem.cpp
+  src/elements/clippedbluritem.h src/elements/clippedbluritem.cpp
 
   src/editboard/editboard.h src/editboard/editboard.cpp src/editboard/editboard.ui
   src/editboard/editboard_addelement.h src/editboard/editboard_addelement.cpp src/editboard/editboard_addelement.ui
   src/editboard/editboard_adjustelement_text.h src/editboard/editboard_adjustelement_text.cpp src/editboard/editboard_adjustelement_text.ui
   src/editboard/editboard_adjustelement_rect.h src/editboard/editboard_adjustelement_rect.cpp src/editboard/editboard_adjustelement_rect.ui
+  src/editboard/editboard_adjustelement_blur.h src/editboard/editboard_adjustelement_blur.cpp src/editboard/editboard_adjustelement_blur.ui
 
   src/utils.h src/utils.cpp
   src/scene/graphicsview.h src/scene/graphicsview.cpp

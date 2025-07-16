@@ -59,11 +59,13 @@ class QTIMAGEVIEWER_EXPORT Qtimageviewer : public QWidget {
 
     friend class ClippedTextItem;
     friend class ClippedRectItem;
+    friend class ClippedBlurItem;
 
     friend class EditBoard;
     friend class EditBoard_AddElement;
     friend class EditBoard_AdjustElement_Text;
     friend class EditBoard_AdjustElement_Rect;
+    friend class EditBoard_AdjustElement_Blur;
 
   private:
     Ui::Qtimageviewer *ui;

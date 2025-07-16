@@ -9,6 +9,7 @@
 #include <QTextCursor>
 #include <QTextDocument>
 
+#include "../elements/clippedbluritem.h"
 #include "../elements/clippedrectitem.h"
 #include "../qtimageviewer.h"
 #include "../scene/checkerboardscene.h"
@@ -43,6 +44,8 @@ EditBoard_AdjustElement_Rect::EditBoard_AdjustElement_Rect(QWidget *parent)
                     i->stackBefore(item);
                 }
             }
+            ClippedBlurItem::updateBlurs(item->viewer(), item);
+            item->viewer()->selectOnlyOne(item);
             item->scene()->update();
         }
     });

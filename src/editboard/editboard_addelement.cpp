@@ -3,6 +3,7 @@
 #include "editboard_addelement.h"
 #include "ui_editboard_addelement.h"
 
+#include "../elements/clippedbluritem.h"
 #include "../elements/clippedrectitem.h"
 #include "../elements/clippedtextitem.h"
 #include "../qtimageviewer.h"
@@ -31,6 +32,11 @@ EditBoard_AddElement::EditBoard_AddElement(QWidget *parent)
         EditBoard *editboard = EditBoard::editboard(this);
         editboard->viewer()->view->endDraw();
         addText();
+    });
+    connect(ui->toolButton_3, &QToolButton::clicked, this, [this]() {
+        EditBoard *editboard = EditBoard::editboard(this);
+        editboard->viewer()->view->endDraw();
+        addBlur();
     });
 }
 
@@ -95,6 +101,26 @@ void EditBoard_AddElement::addRect() {
     QBrush brush;
     brush.setColor(Qt::transparent);
     item->setBrush(brush);
+
+    editboard->viewer()->elements.append(item);
+    editboard->viewer()->unselectAll();
+    item->setSelected(true);
+
+    item->setVisible(false); // 先不可见
+    editboard->viewer()->view->startDraw(item);
+
+
+}
+
+
+void EditBoard_AddElement::addBlur() {
+    EditBoard *editboard = EditBoard::editboard(this);
+
+    ClippedBlurItem *item = new ClippedBlurItem(QRect(0, 0, 20, 20));
+    item->setZValue(2);
+    item->setParentItem(editboard->viewer()->canvas);
+
+    item->viewer()->connect(&item->delaying_grab, &QTimer::timeout, &item->delaying_grab, [=]() { item->grab(); });
 
     editboard->viewer()->elements.append(item);
     editboard->viewer()->unselectAll();

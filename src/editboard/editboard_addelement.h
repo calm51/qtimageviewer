@@ -21,6 +21,7 @@ class EditBoard_AddElement : public QWidget {
     void addText();
 
     void addRect();
+    void addBlur();
 
   private:
     Ui::EditBoard_AddElement *ui;

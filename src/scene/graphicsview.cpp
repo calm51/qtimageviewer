@@ -4,6 +4,7 @@
 
 #include <QMouseEvent>
 
+#include "../elements/clippedbluritem.h"
 #include "../qtimageviewer.h"
 #include "../utils.h"
 #include "./canvasrectitem.h"
@@ -131,6 +132,12 @@ void GraphicsView::mouseReleaseEvent(QMouseEvent *event) {
         drawingItem->setAcceptedMouseButtons(Qt::LeftButton);
         viewer()->unselectAll();
         drawingItem->setSelected(true);
+
+        ClippedBlurItem *i = dynamic_cast<ClippedBlurItem *>(drawingItem);
+        if (i && !i->delaying_grab.isActive()) {
+            i->delaying_grab.start();
+        }
+
         drawingItem = nullptr;
 
         hLine->setVisible(false);

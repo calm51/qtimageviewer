@@ -15,6 +15,7 @@
 #include "../scene/checkerboardscene.h"
 #include "../utils.h"
 #include "./editboard_adjustelement_text.h"
+#include "../elements/clippedbluritem.h"
 
 EditBoard::EditBoard(QWidget *parent)
     : QWidget(parent)
@@ -81,6 +82,15 @@ void EditBoard::switchBoard() {
         if (item) {
             ui->stackedWidget->setCurrentWidget(ui->page_3);
             ui->widget_3->updateToolBar(false);
+            return;
+        }
+    }
+
+    {
+        ClippedBlurItem *item = dynamic_cast<ClippedBlurItem *>(li.first());
+        if (item) {
+            ui->stackedWidget->setCurrentWidget(ui->page_4);
+            ui->widget_4->updateToolBar(false);
             return;
         }
     }
